@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <title>upload</title>
+    <link rel="stylesheet" type="text/css" href="css/4.css" media="all">
+    <script>
+  function PreviewImage(imgFile) {
+    var pattern = /(\.*.jpg$)|(\.*.png$)|(\.*.jpeg$)|(\.*.gif$)|(\.*.bmp$)/;
+    if (!pattern.test(imgFile.value)) {
+      alert("系统仅支持jpg/jpeg/png/gif/bmp格式的照片！");
+      imgFile.focus();
+    } else {
+      var path;
+      if (document.all) {//IE
+        imgFile.select();
+        path = document.selection.createRange().text;
+        document.getElementById("imgPreview").innerHTML = "";
+        document.getElementById("imgPreview").style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='scale',src=\"" + path + "\")";//使用滤镜效果
+      } else {//FF
+        path = URL.createObjectURL(imgFile.files[0]);
+        document.getElementById("imgPreview").innerHTML = "<img src='"+path+"'/>";
+      }
+    }
+  }
+</script> <!--js实现图片上传逻辑并指定大小-->
+</head>
+<body>
+<header>
+    <div class="nav">
+        <ul>
+            <li><a class="active1" href="../index.html">Home</a> </li>
+            <li><a href="Browser.html" class="active">Browser</a> </li>
+            <li><a class="dropdown" style="color:green;">My account</a>
+                <ul>
+                    <li><a href="upload.html" style="color:green;"><i class="pic"></i>上传</a> </li>
+                    <li><a href="mycollection.html"><i class="pic1"></i> 我的收藏</a> </li>
+                    <li><a href="myphoto.html"><i class="pic2"></i> 我的照片</a> </li>
+                    <li><a href="sign in.html"><i class="pic3" ></i>登入</a> </li>
+                </ul>
+            </li>
+            <li><a href="Search.html" class="search">Search</a> </li>
+        </ul>
+    </div> <!--导航栏-->
+</header>
+    <div class="sidebar">
+        <div class="tab"  style="width:1300px;"><i class="reorder"></i>upload </div>
+    </div>
+<div>
+    <div id="imgPreview" style='width: 200px; height: 200px;'>
+        <img src="" />
+    </div>
+    <input type="file" onchange='PreviewImage(this)' />
+</div> <!--图片上传及预览-->
+<div class="upload">
+<h4>图片标题</h4>
+<input type="text" style="width:800px;">
+</div>
+<div class="upload">
+    <h4>图片描述</h4>
+    <input type="textarea" style="width:1300px;height:200px;">
+</div>
+<div class="upload">
+    <h4>拍摄国家</h4>
+    <input type="text" style="width:800px;">
+</div>
+<div class="upload">
+    <h4>拍摄城市</h4>
+    <input type="text" style="width:800px;">
+</div>   <!--图片内容描述-->
+<div class="upload" id="upload" style="text-align:center;" >
+    <a href="myphoto.html"><input type="submit" value="提交" style="width:100px;background-color:green;height:30px;" onclick="alert('已提交')"></a>
+</div>  <!--提交上传图片-->
+<footer>
+    <p id="footer">Copyright &copy; 2019-2020. All rights reserved 备案号：19302010046</p>
+</footer> <!--网页版权信息-->
+</body>
+</html>
